@@ -1,0 +1,36 @@
+Lista Infraestrutura
+
+- Windows 11 Versão 10.0.26100 N/A compilação 26100 do tipo x64-based PC
+- Processador Intel64 Family 6 Model 191 Stepping 2 GenuineIntel ~2500 Mhz
+- Versão do BIOS: LENOVO M4SKT3DA, 03/12/2024
+
+VISUAL STUDIO CODE :
+    Version: 1.96.1 (user setup)
+    Commit: 42b266171e51a016313f47d0c48aca9295b9cbb2
+    Date: 2024-12-17T17:50:05.206Z
+    Electron: 32.2.6
+    ElectronBuildId: 10629634
+    Chromium: 128.0.6613.186
+    Node.js: 20.18.1
+    V8: 12.8.374.38-electron.0
+    OS: Windows_NT x64 10.0.26100
+
+NPM :
+  npm: '10.9.0',
+  node: '22.12.0'
+
+DEPENDENCIES : 
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.15.2",
+    "sequelize": "^6.37.7"
+
+Banco de dados: MySQL 8.0.40 :
+
+  Navegador: Chrome Versão 142.0.7444.60 (Versão oficial) 64 bits
+
+  Software de Teste: Postman
+  Servidor de Teste - Frontend: Live Server Port:5500
+  Servidor de Teste - Backend: localhost:3000
+------------------------------------------------
+
