@@ -1,0 +1,10 @@
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const SEGREDO = process.env.JWT_SECRET;
+function gerarToken(payload) {
+  return jwt.sign(payload, SEGREDO, { expiresIn: "3h" });
+}
+function verificarToken(token) {
+  return jwt.verify(token, SEGREDO);
+}
+module.exports = { gerarToken, verificarToken };
