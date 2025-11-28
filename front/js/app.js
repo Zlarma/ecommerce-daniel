@@ -1,13 +1,17 @@
-// API Configuration
-const API_BASE = 'http://localhost:3000'; // Adjust if backend port is different
+// ==========================================
+// APP.JS - VERSÃO SEGURA (Com Bloqueio de Login)
+// ==========================================
 
-// Global state
+// Configuração da API
+const API_BASE = 'http://localhost:3000'; 
+
+// Estado Global
 let currentUser = null;
 let cart = [];
 let products = [];
 let filteredProducts = [];
 
-// DOM Elements
+// Elementos do DOM
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const productsGrid = document.getElementById('productsGrid');
@@ -26,7 +30,7 @@ const logoutBtn = document.getElementById('logoutBtn');
 const adminPanel = document.getElementById('adminPanel');
 const adminBtn = document.getElementById('adminBtn');
 
-// Initialize app
+// Inicializa o App
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
@@ -34,40 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
 function initApp() {
     setupEventListeners();
     checkAuthStatus();
-    loadProducts();
+    loadProducts(); 
 }
 
-// Setup event listeners
+// Event Listeners
 function setupEventListeners() {
-    // Search
-    searchBtn.addEventListener('click', handleSearch);
-    searchInput.addEventListener('keypress', (e) => {
+    // Busca
+    if(searchBtn) searchBtn.addEventListener('click', handleSearch);
+    if(searchInput) searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleSearch();
     });
 
-    // Navigation categories
-    document.querySelectorAll('.nav-list a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const category = e.target.dataset.category;
-            filterByCategory(category);
-        });
-    });
-
-    // Cart
-    cartBtn.addEventListener('click', openCart);
-    document.querySelector('.cart-close').addEventListener('click', closeCart);
+    // Carrinho
+    if(cartBtn) cartBtn.addEventListener('click', openCart);
+    const closeCartBtn = document.querySelector('.cart-close');
+    if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
 
     // Auth
-    logoutBtn.addEventListener('click', logout);
+    if(logoutBtn) logoutBtn.addEventListener('click', logout);
 
     // Checkout
-    document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if(checkoutBtn) checkoutBtn.addEventListener('click', handleCheckout);
 
     // Admin
-    adminBtn.addEventListener('click', () => window.open('./html/produto.html', '_blank'));
+    if(adminBtn) adminBtn.addEventListener('click', () => window.open('./html/produto.html', '_blank'));
 
-    // Close cart when clicking outside
+    // Fechar carrinho ao clicar fora
     window.addEventListener('click', (e) => {
         if (e.target === cartSidebar && cartSidebar.classList.contains('open')) {
             closeCart();
@@ -75,7 +72,7 @@ function setupEventListeners() {
     });
 }
 
-// API helper functions
+// Funções de Ajuda da API
 async function apiRequest(endpoint, options = {}) {
     const config = {
         headers: {
@@ -85,7 +82,6 @@ async function apiRequest(endpoint, options = {}) {
         ...options
     };
 
-    // Add auth token if available
     const token = localStorage.getItem('token');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -106,7 +102,7 @@ async function apiRequest(endpoint, options = {}) {
     }
 }
 
-
+// Auth Functions
 function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -124,30 +120,33 @@ function checkAuthStatus() {
     if (token && user) {
         currentUser = JSON.parse(user);
     }
-
     updateUI();
 }
 
-// Product functions
+// Funções de Produtos
 async function loadProducts() {
     try {
-        loading.style.display = 'block';
-        errorDiv.style.display = 'none';
+        if(loading) loading.style.display = 'block';
+        if(errorDiv) errorDiv.style.display = 'none';
 
+        // Busca do Banco de Dados
         const data = await apiRequest('/produto');
         products = data;
         filteredProducts = [...products];
 
         displayProducts(filteredProducts);
     } catch (error) {
-        errorDiv.textContent = error.message;
-        errorDiv.style.display = 'block';
+        if(errorDiv) {
+            errorDiv.textContent = error.message;
+            errorDiv.style.display = 'block';
+        }
     } finally {
-        loading.style.display = 'none';
+        if(loading) loading.style.display = 'none';
     }
 }
 
 function displayProducts(productsToShow) {
+    if(!productsGrid) return;
     productsGrid.innerHTML = '';
 
     if (productsToShow.length === 0) {
@@ -164,41 +163,30 @@ function displayProducts(productsToShow) {
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
+
+    // VISUAL V2: Usando IMAGEM
+    const imageUrl = product.imagem_url || 'https://via.placeholder.com/300x300?text=Sem+Imagem';
+
     card.innerHTML = `
         <div class="product-image">
-            <i class="fas fa-${getProductIcon(product.categoria)}"></i>
+            <img src="${imageUrl}" alt="${product.nome}" onerror="this.src='https://via.placeholder.com/300x300?text=Erro+Imagem';">
         </div>
         <div class="product-info">
             <h3 class="product-name">${product.nome}</h3>
-            <span class="product-category">${product.categoria}</span>
             <p class="product-brand">${product.marca}</p>
             <p class="product-price">R$ ${parseFloat(product.preco).toFixed(2)}</p>
             <div class="product-actions">
                 <button class="add-to-cart-btn" onclick="addToCart(${product.codProduto})">
-                    <i class="fas fa-cart-plus"></i>
+                    <i class="fas fa-cart-plus"></i> Adicionar
                 </button>
             </div>
         </div>
     `;
-    return card;
-}
 
-function getProductIcon(category) {
-    const icons = {
-        'CPU': 'microchip',
-        'GPU': 'tv',
-        'RAM': 'memory',
-        'Motherboard': 'chess-board',
-        'SSD': 'hdd',
-        'HDD': 'hdd',
-        'PSU': 'plug',
-        'Case': 'box',
-        'Cooler': 'fan',
-        'Monitor': 'desktop',
-        'Keyboard': 'keyboard',
-        'Mouse': 'mouse'
-    };
-    return icons[category] || 'cog';
+    const imgDiv = card.querySelector('.product-image');
+    if(imgDiv) imgDiv.onclick = () => viewProductDetails(product.codProduto);
+
+    return card;
 }
 
 function handleSearch() {
@@ -209,35 +197,22 @@ function handleSearch() {
     } else {
         filteredProducts = products.filter(product =>
             product.nome.toLowerCase().includes(query) ||
-            product.marca.toLowerCase().includes(query) ||
-            product.categoria.toLowerCase().includes(query)
+            product.marca.toLowerCase().includes(query)
         );
     }
 
     displayProducts(filteredProducts);
 }
 
-function filterByCategory(category) {
-    // Update active nav link
-    document.querySelectorAll('.nav-list a').forEach(link => {
-        link.classList.remove('active');
-    });
-    document.querySelector(`[data-category="${category}"]`).classList.add('active');
-
-    if (category === 'all') {
-        filteredProducts = [...products];
-    } else {
-        filteredProducts = products.filter(product => product.categoria === category);
-    }
-
-    displayProducts(filteredProducts);
-}
-
-// Cart functions
+// Funções do Carrinho
 function addToCart(productId) {
+    // === SEGURANÇA ATIVADA ===
     if (!currentUser) {
-        openModal(loginModal);
-        showMessage('Faça login para adicionar produtos ao carrinho.', 'warning');
+        showMessage('Faça login para comprar!', 'warning');
+        // Redireciona para a tela de login após 1.5 segundos
+        setTimeout(() => {
+            window.location.href = './html/login.html';
+        }, 1500);
         return;
     }
 
@@ -278,70 +253,82 @@ function updateCartQuantity(productId, newQuantity) {
 }
 
 function updateCartUI() {
-    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    if(cartCount) cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
     updateCartModal();
 }
 
+// Layout do Carrinho (Corrigido para estilo V2)
 function updateCartModal() {
+    if(!cartItems) return;
+
     if (cart.length === 0) {
         cartItems.innerHTML = '<p>Carrinho vazio</p>';
-        cartTotal.textContent = '0.00';
+        if(cartTotal) cartTotal.textContent = '0.00';
         return;
     }
 
     cartItems.innerHTML = cart.map(item => `
-        <div class="cart-item-simple">
-            <span>${item.nome} (x${item.quantity})</span>
-            <span>R$ ${(item.preco * item.quantity).toFixed(2)}</span>
+        <div class="cart-item" style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #ccc; padding-bottom:5px;">
+            <div>
+                <strong>${item.nome}</strong><br>
+                <small>Qtd: ${item.quantity}</small>
+            </div>
+            <div style="text-align:right;">
+                <span style="color:green; font-weight:bold;">R$ ${(item.preco * item.quantity).toFixed(2)}</span><br>
+                <button onclick="removeFromCart(${item.codProduto})" style="background:red; padding:2px 5px; font-size:0.7rem; margin-top:2px; color: white; border: none; border-radius: 4px; cursor: pointer;">X</button>
+            </div>
         </div>
     `).join('');
 
     const total = cart.reduce((sum, item) => sum + (item.preco * item.quantity), 0);
-    cartTotal.textContent = total.toFixed(2);
+    if(cartTotal) cartTotal.textContent = total.toFixed(2);
 }
 
+// CHECKOUT
 async function handleCheckout() {
+    // === SEGURANÇA EXTRA NO CHECKOUT ===
+    if (!currentUser) {
+        showMessage('Faça login para finalizar a compra.', 'warning');
+        return;
+    }
+
     if (cart.length === 0) {
         showMessage('Seu carrinho está vazio.', 'warning');
         return;
     }
 
-    // Store cart in localStorage for checkout page
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Open checkout in new tab
-    window.open('html/checkout.html', '_blank');
-
-    // Close cart sidebar
+    window.open('./html/checkout.html', '_blank');
     closeCart();
 }
 
-// UI functions
+// UI Functions
 function updateUI() {
     if (currentUser) {
-        loginLink.style.display = 'none';
-        userInfo.style.display = 'flex';
-        userName.textContent = `Olá, ${currentUser.nome} (${currentUser.tipo_usuario})`;
+        if(loginLink) loginLink.style.display = 'none';
+        if(userInfo) userInfo.style.display = 'flex';
+        if(userName) userName.textContent = `Olá, ${currentUser.nome}`;
 
         if (currentUser.tipo_usuario === 'ADMIN') {
-            adminPanel.style.display = 'block';
+            if(adminPanel) adminPanel.style.display = 'block';
         }
     } else {
-        loginLink.style.display = 'inline';
-        userInfo.style.display = 'none';
-        adminPanel.style.display = 'none';
+        if(loginLink) loginLink.style.display = 'inline';
+        if(userInfo) userInfo.style.display = 'none';
+        if(adminPanel) adminPanel.style.display = 'none';
     }
 }
 
 function openCart() {
     updateCartModal();
-    cartSidebar.classList.add('open');
+    if(cartSidebar) cartSidebar.classList.add('open');
 }
 
 function closeCart() {
-    cartSidebar.classList.remove('open');
+    if(cartSidebar) cartSidebar.classList.remove('open');
 }
 
+// Modal de Detalhes
 function viewProductDetails(productId) {
     const product = products.find(p => p.codProduto === productId);
     if (!product) return;
@@ -349,77 +336,89 @@ function viewProductDetails(productId) {
     const productDetails = document.getElementById('productDetails');
     const productModalTitle = document.getElementById('productModalTitle');
 
-    productModalTitle.textContent = product.nome;
+    if(productModalTitle) productModalTitle.textContent = product.nome;
 
-    productDetails.innerHTML = `
-        <div class="product-detail">
-            <div class="product-detail-image">
-                <i class="fas fa-${getProductIcon(product.categoria)}" style="font-size: 8rem; color: #667eea;"></i>
-            </div>
-            <div class="product-detail-info">
-                <div class="product-detail-header">
-                    <h2>${product.nome}</h2>
-                    <span class="product-category">${product.categoria}</span>
-                    <p class="product-brand">Marca: ${product.marca}</p>
+    const imageUrl = product.imagem_url || 'https://via.placeholder.com/400x400?text=Sem+Imagem';
+
+    if(productDetails) {
+        productDetails.innerHTML = `
+            <div class="product-detail">
+                <div class="product-detail-image">
+                    <img src="${imageUrl}" alt="${product.nome}" onerror="this.src='https://via.placeholder.com/400x400?text=Erro+Imagem';">
                 </div>
-
-                <div class="product-price-large">
-                    <strong>R$ ${parseFloat(product.preco).toFixed(2)}</strong>
-                </div>
-
-                ${product.descricao ? `<div class="product-description">
-                    <h3>Descrição</h3>
-                    <p>${product.descricao}</p>
-                </div>` : ''}
-
-                ${product.especificacoes ? `<div class="product-specifications">
-                    <h3>Especificações</h3>
-                    <div class="specs-grid">
-                        ${Object.entries(product.especificacoes).map(([key, value]) =>
-                            `<div class="spec-item">
-                                <strong>${key}:</strong> ${value}
-                            </div>`
-                        ).join('')}
+                <div class="product-detail-info">
+                    <div class="product-detail-header">
+                        <h2>${product.nome}</h2>
+                        <p class="product-brand" style="margin-top:10px;">Marca: <strong>${product.marca}</strong></p>
                     </div>
-                </div>` : ''}
 
-                <div class="product-actions-large">
-                    <button class="add-to-cart-btn-large" onclick="addToCart(${product.codProduto}); closeModal();">
-                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
-                    </button>
+                    <div class="product-price-large" style="font-size: 2rem; color: rgb(47, 99, 59); margin: 20px 0;">
+                        <strong>R$ ${parseFloat(product.preco).toFixed(2)}</strong>
+                    </div>
+
+                    ${product.descricao ? `<div class="product-description">
+                        <h3>Descrição</h3>
+                        <p>${product.descricao}</p>
+                    </div>` : ''}
+
+                    <div class="product-actions-large">
+                        <button class="add-to-cart-btn-large" onclick="addToCart(${product.codProduto}); closeModal();" style="width:100%; background:black; color:white; padding:15px; border:none; cursor:pointer; font-weight:bold;">
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
+    }
 
     openModal(productModal);
 }
 
+function closeModal() {
+    const modal = document.getElementById('productModal');
+    if(modal) modal.style.display = 'none';
+}
+
+function openModal(modal) {
+    if(!modal) return;
+    modal.style.display = 'block';
+    const closeBtn = modal.querySelector('.close');
+    if(closeBtn) closeBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (event) => {
+        if (event.target == modal) modal.style.display = 'none';
+    }
+}
+
+// Mensagens Coloridas
 function showMessage(message, type = 'info') {
-    // Simple notification - in a real app, use a proper notification library
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
+    
+    const colors = {
+        success: 'rgb(115, 163, 92)', 
+        error: '#ff4757',            
+        warning: '#f3c107',          
+        info: 'black'                
+    };
+
+    const bgColor = colors[type] || colors.info;
+    const textColor = type === 'warning' ? 'black' : 'white';
+
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
         padding: 15px 20px;
-        border-radius: 5px;
-        color: white;
+        border-radius: 4px;
+        background-color: ${bgColor};
+        color: ${textColor};
         font-weight: bold;
         z-index: 3000;
+        box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+        border: 2px solid white;
         animation: slideIn 0.3s ease-out;
     `;
-
-    const colors = {
-        success: '#28a745',
-        error: '#dc3545',
-        warning: '#f3c107',
-        info: '#17a2b8'
-    };
-
-    notification.style.backgroundColor = colors[type] || colors.info;
 
     document.body.appendChild(notification);
 
@@ -433,71 +432,21 @@ function showMessage(message, type = 'info') {
     }, 3000);
 }
 
-function scrollToProducts() {
-    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Add some CSS animations
+// Animações
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
-
     @keyframes slideOut {
         from { transform: translateX(0); opacity: 1; }
         to { transform: translateX(100%); opacity: 0; }
     }
-
-    .notification {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .quantity-controls {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    .quantity-controls button {
-        width: 30px;
-        height: 30px;
-        border: none;
-        background: #667eea;
-        color: white;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .quantity-controls button:hover {
-        background: #5a67d8;
-    }
-
-    .remove-btn {
-        background: #dc3545;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-
-    .remove-btn:hover {
-        background: #c82333;
-    }
-
     .no-products {
         grid-column: 1 / -1;
         text-align: center;
         font-size: 1.2rem;
-        color: #666;
         padding: 40px;
     }
 `;

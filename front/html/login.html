@@ -1,69 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" href="../icone.png">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../icone.png" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <script src="../js/login.js" defer></script>
-    <title>Login - TechParts</title>
-</head>
-<body>
+    <title>Coolothes - Login</title>
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="../index.html"><h1>Coolothes</h1></a>
-                </div>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Procurar peças...">
-                    <button id="searchBtn"><i class="fas fa-search"></i></button>
-                </div>
-                <div class="header-actions">
-                    <button id="cartBtn" class="cart-btn">
-                        <i class="fas fa-shopping-bag"></i> <span id="cartCount">0</span>
-                    </button>
-                    <div class="user-menu">
-                        <a href="./html/login.html" id="loginLink">Entrar</a>
-                        <div id="userInfo" class="user-info" style="display: none;">
-                            <span id="userName"></span>
-                            <button id="logoutBtn">Sair</button>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <a href="../index.html"><h1>Coolothes</h1></a>
+          </div>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Procurar Roupas..."
+            />
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="header-actions">
+            <button id="cartBtn" class="cart-btn">
+              <i class="fas fa-shopping-bag"></i> <span id="cartCount">0</span>
+            </button>
+            <div class="user-menu">
+              <a href="./login.html" id="loginLink">Entrar</a>
+              <div id="userInfo" class="user-info" style="display: none">
+                <span id="userName"></span>
+                <button id="logoutBtn">Sair</button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </header>
     <div class="auth-container">
-        
-        <div class="auth-card">
-            <div class="auth-header">
-                <h1><i class="fas fa-microchip"></i> TechParts</h1>
-                <p>Entrar na sua conta</p>
-            </div>
-
-            <form id="loginForm" class="auth-form">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required placeholder="seu@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" required placeholder="Sua senha">
-                </div>
-
-                <button type="submit" class="btn-primary">Entrar</button>
-            </form>
-
-            <div class="auth-links">
-                <p>Não tem conta? <a href="register.html">Cadastre-se</a></p>
-                <p><a href="../index.html">Voltar ao início</a></p>
-            </div>
-
-            <div id="resLogin" class="message"></div>
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1>Entrar na sua conta</h1>
         </div>
+
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="seu@email.com"
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input
+              type="password"
+              id="senha"
+              required
+              placeholder="Sua senha"
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn-primary">Entrar</button>
+        </form>
+        <br />
+        <div class="auth-links">
+          <p>Não tem conta? <a href="register.html"><span style="font-weight: bolder;">Cadastre-se</span></a></p>
+          <p><a href="../index.html">Voltar ao início</a></p>
+        </div>
+
+        <div id="resLogin" class="message"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

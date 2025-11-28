@@ -23,7 +23,7 @@
             <input
               type="text"
               id="searchInput"
-              placeholder="Procurar peças..."
+              placeholder="Procurar Roupas..."
             />
             <button id="searchBtn"><i class="fas fa-search"></i></button>
           </div>
@@ -43,26 +43,14 @@
       </div>
     </header>
 
-    <nav class="nav">
-      <div class="container">
-        <ul class="nav-list">
-          <li><a href="#" data-category="all">Ver Tudo</a></li>
-          <li><a href="#" data-category="camisetas">Camisetas</a></li>
-          <li><a href="#" data-category="calcas">Calças</a></li>
-          <li><a href="#" data-category="casacos">Casacos</a></li>
-          <li><a href="#" data-category="tenis">Tênis</a></li>
-          <li><a href="#" data-category="acessorios">Acessórios</a></li>
-        </ul>
-      </div>
-    </nav>
-
     <section class="hero">
       <div class="container">
         <div class="hero-content">
           <h2>Loja Legal de Roupas</h2>
           <p>Encontre as roupas mais legais do mundo!</p>
+          <br />
           <button class="cta-btn" onclick="scrollToProducts()">
-            Ver Coleção
+            Ver Produtos
           </button>
         </div>
       </div>
@@ -70,7 +58,7 @@
 
     <section class="products" id="products">
       <div class="container">
-        <h2 class="section-title">Destaques da Coleção</h2>
+        <h2 class="section-title">Produtos Disponíveis</h2>
         <div class="products-grid" id="productsGrid"></div>
         <div class="loading" id="loading">Carregando estoque...</div>
         <div class="error" id="error" style="display: none"></div>

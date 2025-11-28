@@ -1,94 +1,82 @@
-/* ============================================================
-   ESTILO TECHPARTS: ESTRUTURA COMPLEXA + VISUAL PERSONALIZADO
-   ============================================================ */
-
-/* 1. RESET E BASE (Seu estilo de fundo e fonte) */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif; /* Sua fonte */
-    background-color: rgb(233, 227, 227); /* Seu cinza */
-    color: rgb(20, 20, 20);
-    line-height: 1.6;
-    /* Removi text-align: center global para não quebrar o layout dos produtos */
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(233, 227, 227);
+  color: rgb(20, 20, 20);
+  line-height: 1.6;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* 2. HEADER (Seu verde e aquela Sombra Insana) */
 .header {
-    background-color: rgb(115, 163, 92);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    
-    /* AQUELE BOX-SHADOW GIGANTE DO SEU CSS */
-    box-shadow: 0px -2px 15px 10px rgba(0, 0, 0, 0.719),
+  background-color: rgb(115, 163, 92);
+  padding: 1rem 0;
+  position: sticky; /* Isso aqui é bem legal... e simples também!!! */
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0px -2px 15px 10px rgba(0, 0, 0, 0.397),
     rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset,
     rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px,
     rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px,
-    rgb(255, 85, 85) 0px 0px 0px 15px;
+    rgb(255, 85, 85) 0px 0px 0px 15px, rgba(0, 0, 0, 0.521) 0px 20px 40px 30px;
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .logo h1 {
-    font-size: 1.8rem;
-    font-weight: 900; /* Seu negrito forte */
-    letter-spacing: 2px;
-    color: white;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.705);
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.705);
 }
 
 .logo i {
-    color: black; /* Detalhe do ícone */
+  color: black;
 }
 
-/* 3. INPUTS E BUSCA (Estilo Inset Shadow) */
 .search-bar {
-    display: flex;
-    flex: 1;
-    max-width: 500px;
+  display: flex;
+  flex: 1;
+  max-width: 500px;
 }
 
-/* Aplicando seu estilo de input em TODOS os inputs do site */
-input, 
+input,
 .search-bar input {
-    width: 100%;
-    padding: 10px 15px;
-    border: none;
-    outline: none;
-    border-radius: 4px 0 0 4px;
-    
-    /* SEU ESTILO VISUAL */
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    cursor: cell;
-    
-    /* SUAS SOMBRAS INTERNAS */
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 4px 0 0 4px;
+
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  cursor: cell;
+
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
@@ -96,11 +84,9 @@ input,
 }
 
 input::placeholder {
-    color: green; /* Sua cor de placeholder */
+  color: green;
 }
 
-/* 4. BOTÕES (Estilo Black & Bold) */
-/* Agrupando todos os botões do HTML para ficarem iguais */
 button,
 .search-bar button,
 .cart-btn,
@@ -111,299 +97,389 @@ button,
 .checkout-btn,
 #logoutBtn,
 .admin-btn {
-    background: black;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px; /* Cantos levemente arredondados, não redondos */
-    transition: all 0.3s;
-    font-size: 1rem;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.2); /* Sombra "dura" embaixo */
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Ajustes específicos para botões que precisam de layout */
 .search-bar button {
-    border-radius: 0 4px 4px 0;
-    background: rgb(20, 20, 20); /* Um preto levemente diferente */
+  border-radius: 0 4px 4px 0;
+  background: rgb(20, 20, 20);
 }
 
 .cart-btn {
-    border-radius: 50%; /* Mantendo redondo pois é ícone */
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cart-close{
+  padding: 12px;
+  background-color: rgba(16, 22, 11, 0.158);
+  border-radius: 300px;
 }
 
 button:hover {
-    filter: brightness(150%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+  filter: brightness(150%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.3);
+  rotate: 1deg;
 }
 
 #cartCount {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: rgb(115, 163, 92); /* Verde do header */
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.8rem;
-    border: 2px solid white;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: rgb(115, 163, 92);
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  border: 2px solid white;  
+  
 }
 
-/* 5. NAVEGAÇÃO (Brutalista e Simples) */
 .nav {
-    background: white;
-    border-bottom: 3px solid black; /* Borda grossa */
-    padding: 30px 0;
+  background: white;
+  border-bottom: 3px solid black;
+  padding: 30px 0;
 }
 
 .nav-list {
-    display: flex;
-    list-style: none;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .nav-list a {
-    color: black;
-    font-weight: 800;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    transition: 0.3s;
+  color: black;
+  font-weight: 800;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  transition: 0.3s;
 }
 
-.nav-list a:hover, 
+.nav-list a:hover,
 .nav-list a.active {
-    background: black;
-    color: white;
-    border-radius: 4px;
-    transform: scale(1.1); /* Efeito de zoom do seu estilo */
+  background: black;
+  color: white;
+  border-radius: 4px;
+  transform: scale(1.1);
 }
 
-/* 6. HERO SECTION (Fundo verde sólido) */
 .hero {
-    background: rgb(115, 163, 92);
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-    border-bottom: 3px solid black;
+  background: rgb(140, 160, 131);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  border-bottom: 3px solid black;
 }
 
 .hero h2 {
-    font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    text-shadow: 4px 4px 0px black; /* Sombra dura de texto */
-    margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 4px 4px 0px black;
+  margin-bottom: 20px;
 }
 
-/* 7. PRODUTOS (Cards com bordas pretas) */
 .products {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 900;
-    margin-bottom: 40px;
-    text-decoration: underline;
-    text-decoration-color: rgb(115, 163, 92);
-    text-decoration-thickness: 5px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 40px;
+  text-decoration: underline;
+  text-decoration-color: rgb(115, 163, 92);
+  text-decoration-thickness: 5px;
 }
 
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .product-card {
-    background: white;
-    border: 3px solid black; /* Borda grossa estilo cartoon/retro */
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.2); /* Sombra deslocada dura */
+  background: white;
+  border: 3px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 .product-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px rgba(0,0,0,0.3);
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
 .product-image {
-    height: 200px;
-    background: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: rgb(115, 163, 92);
-    border-bottom: 3px solid black;
+  height: 200px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: rgb(115, 163, 92);
+  border-bottom: 3px solid black;
 }
 
 .product-info {
-    padding: 20px;
-    text-align: left;
+  padding: 20px;
+  text-align: left;
 }
 
 .product-name {
-    font-weight: 900;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
 .product-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: rgb(47, 99, 59);
-    margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(47, 99, 59);
+  margin-bottom: 15px;
 }
 
 .product-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .view-details-btn {
-    background: white;
-    color: black;
-    border: 2px solid black;
+  background: white;
+  color: black;
+  border: 2px solid black;
 }
 
 .view-details-btn:hover {
-    background: black;
-    color: white;
+  background: black;
+  color: white;
 }
 
-/* 8. CARRINHO LATERAL */
 .cart-sidebar {
-    position: fixed;
-    top: 0;
-    right: -400px;
-    width: 350px;
-    height: 100%;
-    background: rgb(233, 227, 227);
-    border-left: 4px solid black;
-    z-index: 2000;
-    transition: right 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    box-shadow: -10px 0 20px rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100%;
+  background: rgb(233, 227, 227);
+  border-left: 4px solid black;
+  z-index: 2000;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  
 }
 
 .cart-sidebar.open {
-    right: 0;
+  right: 0;
 }
 
 .cart-header {
-    background: rgb(115, 163, 92);
-    color: white;
-    padding: 20px;
-    border-bottom: 3px solid black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: rgb(115, 163, 92);
+  color: white;
+  padding: 20px;
+  border-bottom: 3px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cart-body {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; 
 }
 
 .cart-item {
-    background: white;
-    border: 2px solid black;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: white;
+  border: 2px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cart-footer {
-    padding: 20px;
-    border-top: 3px solid black;
-    background: white;
+  padding: 20px;
+  border-top: 3px solid black;
+  background: white;
 }
 
-/* 9. MODAL */
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 3000; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0,0,0,0.8); 
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
-    background-color: rgb(233, 227, 227);
-    margin: 5% auto; 
-    padding: 20px;
-    border: 4px solid black;
-    width: 80%; 
-    max-width: 800px;
-    box-shadow: 10px 10px 0px white;
-    position: relative;
+  background-color: rgb(233, 227, 227);
+  margin: 5% auto;
+  padding: 20px;
+  border: 4px solid black;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 10px 10px 0px white;
+  position: relative;
 }
 
 .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover {
-    color: red;
+  color: red;
 }
 
-/* SEUS SCROLLBARS */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-    box-shadow: inset -1px 0px 4px -1px rgba(0, 0, 0, 0.473);
-    background: #f1f1f1;
+  box-shadow: inset -1px 0px 4px -1px rgba(0, 0, 0, 0.473);
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(47, 99, 59, 0.781);
-    box-shadow: inset 3px 3px 4px -1px rgba(114, 206, 206, 0.219);
+  background-color: rgba(47, 99, 59, 0.781);
+  box-shadow: inset 3px 3px 4px -1px rgba(114, 206, 206, 0.219);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(47, 99, 59, 0.781);
-    box-shadow: inset 0px 0px 2px 2px rgba(17, 34, 24, 0.726);
+  background-color: rgba(47, 99, 59, 0.781);
+  box-shadow: inset 0px 0px 2px 2px rgba(17, 34, 24, 0.726);
 }
 
-/* SELEÇÃO DE TEXTO */
 ::selection {
-    background-color: rgba(47, 99, 59, 0.781);
-    color: rgb(255, 255, 255);
+  background-color: rgba(47, 99, 59, 0.781);
+  color: rgb(255, 255, 255);
 }
 
-/* Utilitários */
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
-/* Responsividade Básica */
 @media (max-width: 768px) {
-    .header-content { flex-direction: column; text-align: center;}
-    .search-bar { width: 100%; order: 3; }
-    .nav-list { flex-direction: column; }
-    .cart-sidebar { width: 100%; right: -100%; }
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .search-bar {
+    width: 100%;
+    order: 3;
+  }
+  .nav-list {
+    flex-direction: column;
+  }
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#userName {
+  white-space: nowrap;
+  font-weight: 800;
+  margin-right: 10px;
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#logoutBtn {
+  padding: 8px 15px;
+  font-size: 0.9rem;
+}
+
+.auth-container{
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 60px 0;
+
+  align-items: center;
+}
+
+
+/* Ajusta o container da imagem no card */
+.product-image {
+  height: 250px; /* Altura fixa para todos os cards ficarem iguais */
+  padding: 0; /* Remove o padding antigo */
+  background: #fff; /* Fundo branco caso a imagem seja PNG transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 3px solid black;
+}
+
+/* Faz a imagem real se comportar bem dentro do card */
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Isso é mágico: corta a imagem para preencher sem esticar */
+  transition: transform 0.3s;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.1); /* Zoom suave ao passar o mouse */
+}
+
+/* Ajuste da imagem no Modal (Detalhes) */
+.product-detail-image {
+  height: 400px; /* Mais alto no modal */
+  padding: 0;
+  overflow: hidden;
+  font-size: 0; /* Remove espaço extra de ícones antigos */
+}
+
+.product-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* No modal, mostra a imagem inteira sem cortar */
+}
