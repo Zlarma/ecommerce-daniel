@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                checkoutMessage.innerHTML = 'Pedido realizado com sucesso! Você receberá um email de confirmação.';
+                checkoutMessage.innerHTML = 'Pedido realizado com sucesso!';
                 checkoutMessage.style.color = 'green';
                 checkoutMessage.style.marginTop = '20px';
 

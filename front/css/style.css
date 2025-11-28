@@ -124,7 +124,7 @@ button,
   position: relative;
 }
 
-.cart-close{
+.cart-close {
   padding: 12px;
   background-color: rgba(16, 22, 11, 0.158);
   border-radius: 300px;
@@ -146,8 +146,7 @@ button:hover {
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 0.8rem;
-  border: 2px solid white;  
-  
+  border: 2px solid white;
 }
 
 .nav {
@@ -289,7 +288,6 @@ button:hover {
   flex-direction: column;
   box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  
 }
 
 .cart-sidebar.open {
@@ -309,7 +307,7 @@ button:hover {
 .cart-body {
   flex: 1;
   padding: 20px;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .cart-item {
@@ -437,14 +435,13 @@ button:hover {
   font-size: 0.9rem;
 }
 
-.auth-container{
+.auth-container {
   max-width: 1200px;
   margin: 0px auto;
   padding: 60px 0;
 
   align-items: center;
 }
-
 
 /* Ajusta o container da imagem no card */
 .product-image {
@@ -482,4 +479,69 @@ button:hover {
   width: 100%;
   height: 100%;
   object-fit: contain; /* No modal, mostra a imagem inteira sem cortar */
+}
+
+#adminPanel {
+  margin-top: 50px;
+}
+
+
+/* Essa é a minha parte favorita do código... tão bunito!!! */
+
+.wave-text span {
+  display: inline-block;
+  animation: wave 2s ease-in-out infinite;
+  filter: saturate(90%);
+}
+
+.wave-text span:nth-child(1) {
+  animation-delay: 0s;
+  color: #f70200; /* Vermelho */
+}
+.wave-text span:nth-child(2) {
+  animation-delay: 0.2s;
+  color: #f77200; /* Laranja */
+}
+.wave-text span:nth-child(3) {
+  animation-delay: 0.4s;
+  color: #f7f200; /* Amarelo */
+}
+.wave-text span:nth-child(4) {
+  animation-delay: 0.6s;
+  color: #07f200; /* Verde */
+}
+.wave-text span:nth-child(5) {
+  animation-delay: 0.8s;
+  color: #0702ff; /* Azul */
+}
+.wave-text span:nth-child(6) {
+  animation-delay: 1s;
+  color: #470282; /* Índigo */
+}
+.wave-text span:nth-child(7) {
+  animation-delay: 1.2s;
+  color: #9702d3; /* Violeta */
+}
+.wave-text span:nth-child(8) {
+  animation-delay: 1.4s;
+  color: #f70200; /* Vermelho (recomeça a sequência) */
+}
+.wave-text span:nth-child(9) {
+  animation-delay: 1.6s;
+}
+.wave-text span:nth-child(10) {
+  animation-delay: 1.8s;
+}
+.wave-text span:nth-child(11) {
+  animation-delay: 2s;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(20px) rotateX(-40deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(0deg) rotateZ(5deg);
+  }
 }

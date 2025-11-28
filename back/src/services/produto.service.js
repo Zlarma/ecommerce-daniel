@@ -43,7 +43,7 @@ async function buscarProdutoPorNome(nome) {
   let whereCondition;
   if (isNumeric) {
     // Search by product ID
-    whereCondition = { codProduto: parseInt(nome) };
+    whereCondition = { nome: parseInt(nome) };
   } else {
     // Search by product name (partial match)
     whereCondition = {

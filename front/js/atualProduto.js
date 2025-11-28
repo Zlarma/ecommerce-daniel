@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let nome = document.getElementById('nome').value
             let descricao = document.getElementById('descricao')?.value || ''
             let modelo = document.getElementById('modelo').value
-            let categoria = document.getElementById('categoria').value
             let marca = document.getElementById('marca').value
             let preco = Number(document.getElementById('preco').value)
             let imagem_url = document.getElementById('imagem_url')?.value || ''
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 nome: nome,
                 descricao: descricao,
                 modelo: modelo,
-                categoria: categoria,
                 marca: marca,
                 preco: preco,
                 imagem_url: imagem_url,

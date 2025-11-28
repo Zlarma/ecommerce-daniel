@@ -49,9 +49,12 @@
           <h2>Loja Legal de Roupas</h2>
           <p>Encontre as roupas mais legais do mundo!</p>
           <br />
-          <button class="cta-btn" onclick="scrollToProducts()">
-            Ver Produtos
+          <button class="cta-btn">
+            <a href="#products">Ver Produtos</a>
           </button>
+          <div id="adminPanel" style="display: none">
+            <button id="adminBtn" class="admin-btn">Admin</button>
+          </div>
         </div>
       </div>
     </section>
@@ -89,8 +92,6 @@
       </div>
     </div>
 
-    <div id="adminPanel" style="display: none">
-      <button id="adminBtn" class="admin-btn">Admin</button>
-    </div>
+
   </body>
 </html>
