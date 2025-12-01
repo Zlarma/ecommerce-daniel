@@ -170,10 +170,12 @@ function createProductCard(product) {
     card.innerHTML = `
         <div class="product-image">
             <img src="${imageUrl}" alt="${product.nome}" onerror="this.src='https://via.placeholder.com/300x300?text=Erro+Imagem';">
-        </div>
-        <div class="product-info">
+            </div>
+            <div class="product-info">
             <h3 class="product-name">${product.nome}</h3>
-            <p class="product-brand">${product.marca}</p>
+            <p class="product-brand">${product.modelo}</p>
+            <br>  
+            <p class="product-brand">${product.marca}</p>  
             <p class="product-price">R$ ${parseFloat(product.preco).toFixed(2)}</p>
             <div class="product-actions">
                 <button class="add-to-cart-btn" onclick="addToCart(${product.codProduto})">
